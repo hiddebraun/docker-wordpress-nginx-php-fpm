@@ -7,7 +7,7 @@ Put these files into a `docker` directory in the root of your Wordpress installa
 
 ## First time / building the PHP image
 
-1. Set the right PHP version and Xdebug version in the [PHP-FPM Dockerfile](php-fpm/Dockerfile) (Make sure the Xdebug version is supported by the chosen PHP version)
+1. Set the right PHP version and Xdebug version in the [PHP-FPM Dockerfile](php-fpm/Dockerfile) (Make sure the Xdebug version is [supported by the chosen PHP version](https://xdebug.org/docs/compat))
 2. Set the right LOCAL_DOMAIN and LIVE_DOMAIN in [docker.compose.yml](docker-compose.yml)
 3. Update you database MARIADB_DATABASE, etc. variables in [docker.compose.yml](docker-compose.yml)
 4. Put your initial database SQL file into the **docker-entrypoint-initdb.d** directory
