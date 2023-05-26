@@ -15,7 +15,10 @@ Set the right PHP version and Xdebug version in the [PHP-FPM Dockerfile](php-fpm
 
 For example, if you want to use PHP 8.1, change it to: `build: php-fpm/8.1`
 
-Optional: Enable and configure XDEBUG in [php-override.ini](config/php/php-override.ini)
+**Make sure you rebuild the image after changing the version**:  
+`docker-compose down && docker-compose up --build -d`
+
+Optional: Enable and configure the **Xdebug** extension in [php-override.ini](config/php/php-override.ini)
 
 ---
 
