@@ -1,0 +1,44 @@
+version: '3.9'
+name: nginx-php-fpm-db
+
+services:
+    web:
+        image: nginx:latest
+        ports:
+            - '80:80'
+        environment:
+            - LOCAL_DOMAIN=mydomain.test
+            - LIVE_DOMAIN=mydomain.com
+        volumes:
+            - ../:/var/www/html
+            - ./logs/nginx:/logs/nginx
+            - ./config/nginx:/etc/nginx/templates
+        depends_on:
+            - php-fpm
+        links:
+            - php-fpm
+            - db
+    php-fpm:
+        build: php-fpm
+        volumes:
+            - ../:/var/www/html
+            - ./logs/xdebug:/logs/xdebug
+            - ./config/php/custom.conf:/usr/local/etc/php-fpm.d/zz-custom.conf
+            - ./config/php/php-override.ini:/usr/local/etc/php/conf.d/zz-php-override.ini
+            - ./logs/php-fpm/:/tmp/xdebug_log
+        links:
+            - db
+    db:
+        image: mariadb:latest
+        environment:
+            MARIADB_DATABASE: mydatabase
+            MARIADB_USER: dbuser
+            MARIADB_PASSWORD: dbpass
+            MARIADB_ROOT_PASSWORD: root
+        ports:
+            - "3336:3306"
+        volumes:
+            - ./data:/var/lib/mysql
+            - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+
+
