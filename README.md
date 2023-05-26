@@ -22,9 +22,9 @@ Optional: Enable and configure XDEBUG in [php-override.ini](config/php/php-overr
 # Setup NGINX
 
 Set the right `LOCAL_DOMAIN` and `LIVE_DOMAIN` variables in [docker.compose.yml](docker-compose.yml).
-Set it to `localhost` if you don;t have a custom domain.
+Set it to `localhost` if you don't have a custom domain.
 
-If you don't want to proxy missing uplaods to a live server, disable this section in the NGINX config file
+If you don't want to proxy missing uploads to a live server, disable this section in the NGINX config file
 
 
 ## Setup Maria DB
