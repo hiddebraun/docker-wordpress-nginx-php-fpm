@@ -1,6 +1,9 @@
 # Wordpress Docker - NGINX + PHP-FPM + MariaDB
 
-This images 
+This docker setup contains a docker-compose file and configuration for local Wordpress development.
+
+Put these files into a `docker` directory in the root of your Wordpress installation.
+
 
 ## First time / building the PHP image
 
