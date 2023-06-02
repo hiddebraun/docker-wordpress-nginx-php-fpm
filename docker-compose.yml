@@ -1,5 +1,5 @@
 version: '3.9'
-name: nginx-php-fpm-db
+name: nginx-php
 
 services:
     web:
@@ -7,8 +7,8 @@ services:
         ports:
             - '80:80'
         environment:
-            - LOCAL_DOMAIN=transfer-corp.test
-            - LIVE_DOMAIN=transfer-solutions.com
+            - LOCAL_DOMAIN=mydomain.test
+            - LIVE_DOMAIN=mylivedomain.com
         volumes:
             - ../:/var/www/html
             - ./logs/nginx:/logs/nginx
@@ -19,7 +19,7 @@ services:
             - php-fpm
             - db
     php-fpm:
-        build: php-fpm/7.4
+        build: php-fpm/8.1
         volumes:
             - ../:/var/www/html
             - ./logs/xdebug:/logs/xdebug
@@ -31,14 +31,15 @@ services:
     db:
         image: mariadb:latest
         environment:
-            MARIADB_DATABASE: transfercorp
-            MARIADB_USER: transfercorp
-            MARIADB_PASSWORD: transfercorp
+            MARIADB_DATABASE: db
+            MARIADB_USER: db
+            MARIADB_PASSWORD: db
             MARIADB_ROOT_PASSWORD: root
         ports:
             - "3336:3306"
         volumes:
             - ./data:/var/lib/mysql
+            - ./config/mysql:/etc/mysql/conf.d
             - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
 
 
