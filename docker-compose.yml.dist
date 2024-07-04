@@ -7,8 +7,8 @@ services:
         ports:
             - '80:80'
         environment:
-            - LOCAL_DOMAIN=mydomain.test
-            - LIVE_DOMAIN=mylivedomain.com
+            LOCAL_DOMAIN: ${LOCAL_DOMAIN}
+            LIVE_DOMAIN: ${LIVE_DOMAIN}
         volumes:
             - ../:/var/www/html
             - ./logs/nginx:/logs/nginx
