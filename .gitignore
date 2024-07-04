@@ -3,3 +3,4 @@
 /docker-entrypoint-initdb.d/*
 !/docker-entrypoint-initdb.d/.gitkeep
 docker-compose.yml
+.env
