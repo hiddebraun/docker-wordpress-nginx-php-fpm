@@ -10,6 +10,7 @@ RUN apk update && apk add --update \
     freetype-dev \
     libjpeg-turbo-dev \
     libpng-dev \
+    imagemagick-dev \
     ${PHPIZE_DEPS}
 
 RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
@@ -19,5 +20,7 @@ RUN docker-php-ext-install soap && docker-php-ext-enable soap
 RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg
 RUN docker-php-ext-install gd && docker-php-ext-enable gd
 RUN docker-php-ext-install pdo mysqli pdo_mysql
+RUN docker-php-ext-install exif && docker-php-ext-enable exif
+RUN pecl install imagick && docker-php-ext-enable imagick
 
 RUN pecl install xdebug-3.3.2
